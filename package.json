@@ -1,0 +1,61 @@
+{
+  "name": "@your-scope/transactions-sdk",
+  "version": "0.1.0",
+  "description": "TypeScript SDK for the Transactions API",
+  "keywords": [
+    "sdk",
+    "transactions",
+    "api",
+    "blockchain",
+    "typescript"
+  ],
+  "author": "Your Name or Company <email@example.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-username/your-repo.git"
+  },
+  "homepage": "https://github.com/your-username/your-repo#readme",
+  "bugs": {
+    "url": "https://github.com/your-username/your-repo/issues"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "bun test",
+    "build": "bun run build:clean && bun run build:code && bun run build:types",
+    "build:clean": "rm -rf ./dist",
+    "build:code:esm": "bun build ./index.ts --outfile ./dist/index.js --target bun --format esm --sourcemap",
+    "build:code:cjs": "bun build ./index.ts --outfile ./dist/index.cjs --target bun --format cjs --sourcemap",
+    "build:code": "bun run build:code:esm && bun run build:code:cjs",
+    "build:types": "tsc -p tsconfig.build.json",
+    "doc": "typedoc",
+    "prepublishOnly": "bun run build"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/uuid": "^10.0.0",
+    "typedoc": "^0.28.2",
+    "typescript": "^5"
+  },
+  "peerDependencies": {
+    "zod": "^3.0.0"
+  },
+  "dependencies": {
+    "uuid": "^11.1.0"
+  }
+}
